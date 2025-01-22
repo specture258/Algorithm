@@ -8,23 +8,16 @@ int dx[4] = {1,0, -1,0};
 int dy[4] = {0,1,0,-1};
 int res;
 
-void recur(int x, int y){
-	
+void recur(int x, int y, int cnt){
+		res = max(res, cnt);
 	for(int i=0 ; i<4 ; i++){
 		int nx = x + dx[i];
 		int ny = y + dy[i];
 		if(nx < 0 || nx>=r || ny <0 || ny>=c || visited[board[nx][ny] - 65]){
-			int cnt =0;
-		    for(int j=0 ; j<26 ;j++){
-		    	if(visited[j]){
-		    		cnt++;
-				}
-			}
-			res = max(res, cnt);
 			continue;
 		} 
 		visited[board[nx][ny] - 65] = 1;
-		recur(nx, ny);
+		recur(nx, ny, cnt+1);
 		visited[board[nx][ny] - 65] = 0;
 	}
 }
@@ -45,7 +38,7 @@ int main(){
 	
 	visited[ board[0][0] - 65]  = 1;
 	
-	recur(0,0);
+	recur(0,0, 1);
 	
 	cout << res;
 	
