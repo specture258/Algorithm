@@ -27,7 +27,7 @@ int main(){
    int res =0;
    for(int i=1 ; i<v.size(); i++){
    	    if(v[i].first <= ed){
-   	    	if(v[i].second >= ed){
+   	    	if(v[i].second > ed){
    	    		ed = v[i].second;
 			}
 		}
